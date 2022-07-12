@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<script>
+	function b64EncodeUnicode(str) {
+		return btoa(encodeURIComponent(str));
+	};
+
+	function UnicodeDecodeB64(str) {
+		return decodeURIComponent(escape(window.atob( str )));
+	};
+
+	b64EncodeUnicode("✓ à la mode"); // "JUUyJTlDJTkzJTIwJUMzJUEwJTIwbGElMjBtb2Rl"
+	UnicodeDecodeB64("JUUyJTlDJTkzJTIwJUMzJUEwJTIwbGElMjBtb2Rl"); // "✓ à la mode"
+
+	function decode(){
+	
+		
+		
+		var odiv = document.getElementById("out");
+		var oa = document.createElement("textarea");
+		
+		oa.cols = "80";
+		oa.rows = "30";
+		oa.value = UnicodeDecodeB64(document.getElementById("inarea").value)
+		odiv.appendChild(oa);
+		
+		
+
+	}
+</script>
+
+</head>
+<body>
+
+<div>
+	<p>1. Enter gibberish:</p>
+	<p><textarea id="inarea" rows="10" cols="80"></textarea></p>
+</div>
+<div>
+	<p>2. Press this button -> <button onclick="decode()">Decode</button></p>
+</div>
+
+<div id="out"></div>
+
+</body>
+</html>
